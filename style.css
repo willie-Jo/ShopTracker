@@ -1,65 +1,84 @@
 /**
-* Project: ShopTracker - Simple Inventory Management System
 * File: style.css
-* Version: 1.0.0
-* Description: Central stylesheet for all UI.
-* Dependencies: login page, dashboard layout, stats cards, tables, buttons.
+* Version: 1.2.0 - Fix mobile side-scroll + stats row
 * Author: William Adejoh
 */
-
-/* BASE */
 *{margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI", sans-serif}
+html, body{width:100%; overflow-x:hidden; background:#f4f6f9}
 
-/* LOGIN PAGE */
-.login-body{
-    background:#0f172a; 
-    display:flex; 
-    flex-direction:column; 
-    justify-content:center; 
-    align-items:center; 
-    height:100vh
-}
-.login-body h2{color:#ddd; margin-bottom: 30px}
-.login-box{background:white; padding:30px; border-radius:16px; width:360px; box-shadow:0 10px 30px rgba(0,0,0,0.2)}
-.login-box small{margin-bottom:5px}
+/* LOGIN */
+.login-body{background:#0f172a; display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:100vh; padding:20px}
+.login-body h2{color:#ddd; margin-bottom:30px}
+.login-box{background:white; padding:30px; border-radius:16px; width:100%; max-width:360px; box-shadow:0 10px 30px rgba(0,0,0,0.2)}
+.login-box small{margin-bottom:5px; font-weight:600}
 .login-box p.sub{color:#64748b; margin-bottom:15px; font-size:14px}
-.login-box input,.login-box button{display: block; width:100%; padding:12px; border-radius:8px;}
+.login-box input,.login-box button{display:block; width:100%; padding:12px; border-radius:8px}
 .login-box input{margin:8px 0; border:1px solid #ddd}
 .login-box button{margin-top:12px; border:1px solid #0f172a; background:#0f172a; color:white; cursor:pointer; font-weight:bold}
-.login-box button:hover{background:#1e293b}
 .error{color:#ef4444; background:#fee2e2; padding:8px; border-radius:6px; font-size:13px; margin-bottom:10px}
 
 /* DASHBOARD */
-body{background:#f4f6f9}
-.header {
-    background:#1e293b; 
-    color:white; 
-    padding:15px 30px; 
-    display:flex; 
-    justify-content:space-between; 
-    align-items:center
-}
-.header a{color:#f87171; text-decoration:none}
-.stats{display:grid; grid-template-columns:repeat(3,1fr); gap:15px; padding:20px 30px}
-.stat{background:white; padding:15px; border-radius:10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.5)}
+.header{background:#1e293b; color:white; padding:15px 30px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; width:100%}
+.header a{color:#f87171; text-decoration:none; font-weight:600}
+.stats{display:grid; grid-template-columns:repeat(3,1fr); gap:15px; padding:20px 30px; max-width:1200px; margin:0 auto; width:100%}
+.stat{background:white; padding:15px; border-radius:10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.05); border:1px solid #e2e8f0}
 .stat h3{font-size:28px; color:#0f172a}
 .stat p{color:#64748b}
-.container{padding:0 30px 30px 30px; display:grid; grid-template-columns:1fr 2fr; gap:20px}
-.card {background:white; padding:20px; border-radius:12px; /*text-align:center;*/ box-shadow:0 4px 10px rgba(0, 0, 0, 0.05)}
+.container{padding:0 30px 30px; display:grid; grid-template-columns:1fr 2fr; gap:20px; max-width:1200px; margin:0 auto; width:100%}
+.card{background:white; padding:20px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.05); border:1px solid #e2e8f0; width:100%; max-width:100%; overflow:hidden}
 .card input,.card button{width:100%; padding:10px; margin:6px 0; border-radius:8px}
 .card input{border:1px solid #ddd}
 .card button{border:1px solid #0f172a; background:#0f172a; color:white; cursor:pointer}
-.card button:hover{background:#334155}
-.search-row{display:flex; gap:10px; margin-bottom:15px}
-.search-row input{flex:1; margin:0}
-.search-row button{width:120px; margin:0}
+.search-row{display:flex; gap:10px; margin-bottom:15px; width:100%}
+.search-row input{flex:1; min-width:0; margin:0}
+.search-row button{width:100px; flex-shrink:0; margin:0}
+.table-wrap{width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch}
 table{border-collapse:collapse; width:100%; margin-top:10px}
-th{background:#f8fafc; text-align:left}
-td{border-top:1px solid #eee}
-th,td{padding:10px}
+th{background:#f8fafc; text-align:left; font-size:12px; color:#64748b; text-transform:uppercase}
+td{border-top:1px solid #eee; font-size:14px}
+th,td{padding:10px; white-space:nowrap}
 .low,.ok{color:white; padding:3px 8px; border-radius:12px; font-size:12px}
-.low{background:#ef4444}
-.ok{background:#22c55e}
-.btn{display:inline-block; padding:5px 10px; border-radius:6px; text-decoration:none; font-size:13px}
-.sell{background:#3b82f6; color:white}
-.del{background:#fee2e2; color:#ef4444}
+.low{background:#ef4444} .ok{background:#22c55e}
+.btn{display:inline-block; padding:5px 10px; border-radius:6px; text-decoration:none; font-size:13px; margin-right:4px}
+.sell{background:#3b82f6; color:white} .del{background:#fee2e2; color:#ef4444}
+
+
+/* Tablet */
+@media (max-width:900px){
+    .container{grid-template-columns:1fr; padding:0 20px 20px}
+    .stats{padding:20px}
+}
+
+/* Mobile - NO SIDE SCROLL, STATS IN ONE ROW */
+@media (max-width:600px){
+    .header{padding:12px 16px}
+    .header h2{font-size:18px}
+    .stats{
+        grid-template-columns: repeat(3, 1fr); /* keep in row */
+        gap:8px;
+        padding:12px;
+    }
+    .stat{
+        padding:10px 6px;
+        min-width:0; /* prevents overflow */
+    }
+    .stat h3{font-size:18px}
+    .stat p{font-size:10px; line-height:1.2}
+    .container{padding:0 12px 12px; gap:12px}
+    .card{padding:14px}
+    /* Table scrolls only inside card, not page */
+    .table-wrap{margin:0 -14px; padding:0 14px; width:auto}
+    table{width:600px} /* table stays wide but scrolls inside */
+}
+
+@media (max-width: 380px){
+    .login-body{padding:16px}
+    .login-box{padding:20px; border-radius:12px}
+    .login-body h2{font-size:22px; margin-bottom:20px}
+    .stats{gap:6px; padding:10px}
+    .stat{padding:8px 4px; border-radius:8px}
+    .stat h3{font-size:16px}
+    .stat p{font-size:9px}
+    .header div{font-size:13px}
+    .card input,.card button{font-size:13px}
+}

@@ -72,7 +72,7 @@ if ($search != '') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Shop Tracker</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css>v=3">
 </head>
 <body>
     <div class="header">
@@ -110,23 +110,27 @@ if ($search != '') {
                 <button type="submit">Search</button>
                 <?php if($search){echo '<a class="btn" href="dashboard.php">Clear</a>';}?>
             </form>
-            <table>
-                <tr><th>S/N</th><th>Prod ID</th><th>Name</th><th>Price</th><th>Qty</th><th>Action</th></tr>
-                <?php $sn=1; while($row = $products->fetch_assoc()): ?>
-                <tr>
-                    <td><?php echo $sn++; ?></td>
-                    <td style="color:#6b7280; font-size:13px;"><?php echo $row['id']; ?></td>
-                    <td><?php echo htmlspecialchars($row['name']); ?></td>
-                    <td>₦<?php echo number_format($row['price']); ?></td>
-                    <td><?php echo $row['quantity']; ?></td>
-                    <td><?php echo $row['quantity'] < 5 ? '<span class="low">Low</span>' : '<span class="ok">Ok</span>'; ?></td>
-                    <td>
-                        <a class="btn sell" href="?sell=<?php echo $row['id']; ?>">Sell</a>
-                        <a class="btn del" href="?delete=<?php echo $row['id']; ?>" onclick="return confirm('Delete?')">Delete</a>
-                    </td>
-                </tr>
-                <?php endwhile; ?>
-            </table>
+            <div class="table-wrap">
+                <table>
+                    <tr>
+                        <th>S/N</th><th>ID</th><th>Name</th><th>Price</th><th>Qty</th><th>Status</th><th>Action</th>
+                    </tr>
+                    <?php $sn=1; while($row = $products->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo $sn++; ?></td>
+                        <td style="color:#6b7280; font-size:13px;"><?php echo $row['id']; ?></td>
+                        <td><?php echo htmlspecialchars($row['name']); ?></td>
+                        <td>₦<?php echo number_format($row['price']); ?></td>
+                        <td><?php echo $row['quantity']; ?></td>
+                        <td><?php echo $row['quantity'] < 5 ? '<span class="low">Low</span>' : '<span class="ok">Ok</span>'; ?></td>
+                        <td>
+                            <a class="btn sell" href="?sell=<?php echo $row['id']; ?>">Sell</a>
+                            <a class="btn del" href="?delete=<?php echo $row['id']; ?>" onclick="return confirm('Delete?')">Delete</a>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </table>
+            </div>
         </div>
     </div>
 </body>
