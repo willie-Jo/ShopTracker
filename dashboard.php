@@ -72,7 +72,7 @@ if ($search != '') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Shop Tracker</title>
-    <link rel="stylesheet" href="style.css>v=3">
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
     <div class="header">
